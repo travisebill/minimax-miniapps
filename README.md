@@ -30,6 +30,20 @@ minimax-miniapps/
         icon.png
 ```
 
+## 第一次使用這個庫
+
+二進位資產（Plugin 圖示）無法透過純文字的 Git push 傳遞，所以它們以 base64 放在 `assets/*.b64`，
+由 `assets/decode-assets.sh` 解出，或由 `embed-assets` workflow 自動解碼並提交。
+
+第一次 clone 之後執行一次：
+
+```bash
+git clone --depth 1 https://github.com/travisebill/minimax-miniapps.git
+cd minimax-miniapps && bash bootstrap.sh
+```
+
+之後若要新增或更新二進位資產，只要改 `assets/*.b64` 並 push，`embed-assets` workflow 會自動解碼提交。
+
 ## 新增一個 Mini App
 
 1. 依 [MiniMax-Code-MiniApps](https://github.com/MiniMax-AI/MiniMax-Code-MiniApps) 的契約建立
