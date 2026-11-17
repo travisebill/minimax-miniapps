@@ -38,25 +38,38 @@ minimax-miniapps/
 第一次 clone 之後執行一次：
 
 ```bash
-gh repo clone travisebill/minimax-miniapps minimax-miniapps && cd minimax-miniapps && bash bootstrap.sh
-```
-
-沒有 `gh` 的話用 git 也行：
-
-```bash
-git clone --depth 1 https://github.com/travisebill/minimax-miniapps.git && cd minimax-miniapps && bash bootstrap.sh
+git clone --depth 1 https://github.com/travisebill/minimax-miniapps.git
+cd minimax-miniapps && bash bootstrap.sh
 ```
 
 之後若要新增或更新二進位資產，只要改 `assets/*.b64` 並 push，`embed-assets` workflow 會自動解碼提交。
 
 ## 新增一個 Mini App
 
-1. 依 [MiniMax-Code-MiniApps](https://github.com/MiniMax-AI/MiniMax-Code-MiniApps) 的契約建立
-   `plugins/<github-user>/<plugin-id>/`（`plugin.json.name` 必須等於資料夾名）。
-2. 在 `plugins/<github-user>/<plugin-id>/README.md` 寫明 `## Tested environment` 與 `## Data & access`。
-3. 用社群倉庫的驗證器檢查：
-   `node scripts/validate.mjs plugins/<github-user>/<plugin-id>`（把它 checkout 到本機即可）。
-4. 推到本倉庫，並在上面的表格加一列。
+最快的一條路：
+
+```bash
+bash new-miniapp.sh <plugin-id> "<顯示名稱>" "<一句話描述>"
+```
+
+它會從 `templates/hello-miniapp/` 複製出 `plugins/travisebill/<plugin-id>/` 並寫好 manifest。
+
+再照著做四件事：
+
+1. 改 `miniapp/client/index.html`（頁面）與 `miniapp/node/server.mjs`（Node 服務）。
+2. 寫 `README.md`，必須有 `## Tested environment` 與 `## Data & access` 兩個標題
+   （前者要寫明測試過的 MiniMax Code 版本，後者要寫明讀寫了哪些檔案、會不會跑 Agent、連哪些對話）。
+3. 有自己的圖示 → 把它 base64 放成 `assets/<name>.b64`（一行：`<目標路徑> <base64>`），
+   跑 `bash assets/decode-assets.sh`，或直接 push 讓 `embed-assets` workflow 自動解碼提交。
+4. 用社群倉庫的驗證器檢查（在 [MiniMax-Code-MiniApps](https://github.com/MiniMax-AI/MiniMax-Code-MiniApps)
+   的 checkout 裡）：`node scripts/validate.mjs plugins/travisebill/<plugin-id>` — 必須 0 errors。
+
+最後推上去，並在上面的表格加一列。
+
+### 也可以直接叫 Mavis 做
+
+跟 Mavis 說「**做一個新的 mini app：<名字>，用途是 <一句話>，放進我的 miniapp 庫**」即可，
+剩下的驗證、推送、圖示處理都會自動做完。
 
 ## 授權
 
