@@ -2,8 +2,10 @@ name: embed-assets
 
 # Decodes the base64 manifests under assets/ into real files and commits them.
 # Push a new assets/*.b64 and this workflow writes the binary for you.
+# Also runnable by hand: Actions → embed-assets → Run workflow.
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
