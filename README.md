@@ -38,8 +38,13 @@ minimax-miniapps/
 第一次 clone 之後執行一次：
 
 ```bash
-git clone --depth 1 https://github.com/travisebill/minimax-miniapps.git
-cd minimax-miniapps && bash bootstrap.sh
+gh repo clone travisebill/minimax-miniapps minimax-miniapps && cd minimax-miniapps && bash bootstrap.sh
+```
+
+沒有 `gh` 的話用 git 也行：
+
+```bash
+git clone --depth 1 https://github.com/travisebill/minimax-miniapps.git && cd minimax-miniapps && bash bootstrap.sh
 ```
 
 之後若要新增或更新二進位資產，只要改 `assets/*.b64` 並 push，`embed-assets` workflow 會自動解碼提交。

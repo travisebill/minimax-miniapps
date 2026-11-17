@@ -5,8 +5,7 @@
 # assets/*.b64 and are decoded into place by this script (and by the embed-assets workflow).
 #
 # Run it once inside a fresh clone:
-#   git clone --depth 1 https://github.com/travisebill/minimax-miniapps.git
-#   cd minimax-miniapps && bash bootstrap.sh
+#   gh repo clone travisebill/minimax-miniapps minimax-miniapps && cd minimax-miniapps && bash bootstrap.sh
 
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -24,6 +23,9 @@ if git diff --cached --quiet; then
   echo "nothing to commit"
 else
   git commit -m "chore: embed plugin icons and asset workflow"
+  if command -v gh >/dev/null 2>&1; then
+    gh auth setup-git >/dev/null 2>&1 || true
+  fi
   git push
   echo "pushed"
 fi
