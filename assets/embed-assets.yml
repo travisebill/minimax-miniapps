@@ -1,0 +1,32 @@
+name: embed-assets
+
+# Decodes the base64 manifests under assets/ into real files and commits them.
+# Push a new assets/*.b64 and this workflow writes the binary for you.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/**'
+
+permissions:
+  contents: write
+
+jobs:
+  embed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode binary assets
+        run: bash assets/decode-assets.sh
+      - name: Commit
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore: embed binary assets"
+            git push
+          fi
