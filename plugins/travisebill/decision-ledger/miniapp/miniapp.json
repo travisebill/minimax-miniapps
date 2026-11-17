@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "artifacts": {
+    "client": ["./miniapp/client"],
+    "node": ["./miniapp/node"]
+  },
+  "runtime": {
+    "kind": "process",
+    "entry": "./miniapp/node/server.mjs",
+    "lifecycle": "on-demand"
+  },
+  "surface": {
+    "path": "/ledger",
+    "window": {
+      "width": 1320,
+      "height": 880,
+      "minWidth": 760,
+      "minHeight": 540,
+      "resizable": true
+    }
+  },
+  "mcpEndpoints": [],
+  "agentAccess": ["session.run", "session.read"],
+  "agentConcurrency": 2
+}

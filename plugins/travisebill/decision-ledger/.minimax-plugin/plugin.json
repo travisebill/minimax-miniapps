@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "name": "decision-ledger",
+  "displayName": "決策台帳",
+  "version": "1.0.0",
+  "description": "把對話裡散落的取捨變成可累積的資產：決策卡片、選項加權矩陣、依據來源、Agent 補證據與自動產生 ADR，重評日期到點會提醒你回頭看結果。",
+  "author": "travisebill",
+  "icon": "icon.png",
+  "darkIcon": "icon-dark.png",
+  "category": "Productivity",
+  "exampleQueries": [
+    "打開決策台帳",
+    "用決策台帳記下這次要不要上 CI 快取",
+    "在決策台帳裡讓 Agent 幫我找出這個決策的依據"
+  ],
+  "apps": [],
+  "mcpServers": [],
+  "skills": []
+}
