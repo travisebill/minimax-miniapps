@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>決策台帳</title>
+    <link rel="icon" type="image/png" href="/assets/icon.png" />
+    <link rel="stylesheet" href="/assets/app.css" />
+  </head>
+  <body>
+    <div class="app" id="app">
+      <aside class="index">
+        <header class="index__head">
+          <div class="brand">
+            <span class="brand__mark" aria-hidden="true">決</span>
+            <div class="brand__text">
+              <h1>決策台帳</h1>
+              <p class="brand__sub">把取捨累積成資產</p>
+            </div>
+          </div>
+          <button class="btn btn--primary" id="newDecision" type="button">
+            <span aria-hidden="true">＋</span> 新決策
+          </button>
+        </header>
+
+        <div class="index__tools">
+          <input
+            class="input"
+            id="search"
+            type="search"
+            placeholder="搜尋標題、情境、依據"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <div class="chips" id="filters" role="tablist" aria-label="篩選">
+            <button class="chip is-active" type="button" data-filter="all" role="tab">全部</button>
+            <button class="chip" type="button" data-filter="draft" role="tab">草稿</button>
+            <button class="chip" type="button" data-filter="decided" role="tab">已定案</button>
+            <button class="chip" type="button" data-filter="review" role="tab">待重評</button>
+          </div>
+        </div>
+
+        <ul class="list" id="list" aria-label="決策清單"></ul>
+
+        <footer class="index__foot">
+          <span id="stats">—</span>
+          <span class="index__foot-hint" id="bridgeState"></span>
+        </footer>
+      </aside>
+
+      <main class="detail" id="detail" tabindex="-1"></main>
+
+      <aside class="agent" id="agentPanel" aria-label="Agent 助理" hidden>
+        <header class="agent__head">
+          <div>
+            <h2>Agent 助理</h2>
+            <p class="agent__sub" id="agentSub">讓 Agent 讀檔案與對話，把依據補回決策</p>
+          </div>
+          <button class="btn btn--ghost btn--icon" id="closeAgent" type="button" aria-label="關閉">✕</button>
+        </header>
+        <div class="agent__body" id="agentBody"></div>
+        <footer class="agent__foot">
+          <button class="btn btn--primary" id="agentRun" type="button">讓 Agent 補依據</button>
+          <button class="btn btn--ghost" id="agentImport" type="button">從對話匯入</button>
+        </footer>
+      </aside>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="/assets/app.js"></script>
+  </body>
+</html>
